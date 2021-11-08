@@ -1,0 +1,36 @@
+﻿@model CategoryViewModel
+
+    <div class="product-area section">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-info">
+                            <div class="tab-single">
+                                <div class="row">
+                                    @{
+                                        foreach (Category category in Model.ParentCategories)
+                                        {
+                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a asp-controller="Category" asp-action="ProductsByID" asp-route-id="@category.ID">
+                                                            <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
+                                                            <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-content">
+                                                        <h3><a href="product-details.html">@category.Name</a></h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>

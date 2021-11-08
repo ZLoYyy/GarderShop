@@ -1,0 +1,28 @@
+﻿@model ProductViewModel
+<div class="product-area section">
+    <div class="product-area most-popular section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Лучшие товары</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="owl-carousel popular-slider">
+                        <!-- Start Single Product -->
+                        @{
+                            foreach (Product product in Model.ProductsByCategory)
+                            {
+                                <partial name="_PopularArea" model="product" />
+                            }
+                        }
+                        <!-- End Single Product -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

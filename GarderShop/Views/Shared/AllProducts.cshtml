@@ -1,0 +1,9 @@
+﻿@model GarderShop.Models.Product
+
+<div class="col-lg-4">
+    <img class="img-thumbnail" src="@Model.Img" alt="@Model.Name" />
+    <h4>Модель: @Model.Name</h4>
+    <p>Цена: @Model.Price.ToString("c")</p>
+    <p>@Model.ShortDesc</p>
+    <p><a class="btn btn-warnind" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@Model.ID">Добавить в корзину</a></p>
+</div>

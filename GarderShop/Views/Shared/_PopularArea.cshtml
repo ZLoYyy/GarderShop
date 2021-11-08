@@ -1,0 +1,27 @@
+﻿@model GarderShop.Models.Product
+    <div class="single-product">
+        <div class="product-img">
+            <a href="product-details.html">
+                <img class="default-img"src="@Model.Img" alt="@Model.Name">
+                <img class="hover-img" src="@Model.Img" alt="@Model.Name">
+                <!--<span class="out-of-stock">Hot</span>-->
+            </a>
+            <div class="button-head">
+                <div class="product-action">
+                    <a data-toggle="modal" data-target="#exampleModal" title="Быстрый просмотр" href="#"><i class=" ti-eye"></i><span>Быстрый просмотр</span></a>
+                    <a title="Избранное" href="#"><i class=" ti-heart "></i><span>Добавить в избранное</span></a>
+                    <a title="Сравнению" href="#"><i class="ti-bar-chart-alt"></i><span>Добавить к сравнению</span></a>
+                </div>
+                <div class="product-action-2">
+                    <a class="btn btn-warnind" title="Добавить в корзину" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@Model.ID">Добавить в корзину</a>                    
+                </div>
+            </div>
+        </div>
+        <div class="product-content">
+            <h3><a href="product-details.html">@Model.Name</a></h3>
+            <div class="product-price">
+                <!--<span class="old">$60.00</span>-->
+                <span>@Model.Price.ToString("c")</span>
+            </div>
+        </div>
+    </div>
