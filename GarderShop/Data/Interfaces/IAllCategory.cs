@@ -8,8 +8,10 @@ namespace GarderShop.Data.Interfaces
 {
     public interface IAllCategory
     {
-        IEnumerable<Category> AllCategories { get; }
-        IEnumerable<Category> ParentCategories { get; }
-        Category CategoryByID(int id);
+        Task<IEnumerable<Category>> AllCategoriesAsync();
+        Task<IEnumerable<Category>> ParentCategoriesAsync();
+        Task<IEnumerable<Category>> ChildCategoriesAsync(int id);
+        Task<Category> CategoryByIDAsync(int id);
+        Task SaveCategoryAsync(Category category);
     }
 }

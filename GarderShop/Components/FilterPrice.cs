@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GarderShop.Controllers
+namespace GarderShop.Components
 {
-    public class PriductController1 : Controller
+    public class FilterPrice: ViewComponent
     {
-        public IActionResult Index(int index)
+        public ViewViewComponentResult Invoke()
         {
             return View();
         }

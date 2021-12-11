@@ -16,6 +16,7 @@ namespace GarderShop.Models
         public bool IsFavorite { get; set; }
         public bool Available { get; set; }
         public int CategoryID { get; set; }
-        public Category Category { get; set; }
+        public Category Category { get; set; }        
+        public virtual IEnumerable<ProductAttribute> Attributes { get; set; }
     }
 }

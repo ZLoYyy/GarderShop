@@ -12,74 +12,42 @@ namespace GarderShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IAllProducts _carRepository;
+        private readonly IAllProducts _productRepository;
+        private readonly IAllCategory _categoryRepository;
 
-        public HomeController(IAllProducts carRepository)
+        public HomeController(IAllProducts productRepository, IAllCategory categoryRepository)
         {
-            _carRepository = carRepository;
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
         }
 
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
-
             try
             {
                 var homeProducts = new HomeViewModel
                 {
-                    FavProducts = _carRepository.GetFavProducts
+                    FavProducts = _productRepository.GetFavProducts,
+                    Categories = await _categoryRepository.AllCategoriesAsync()
+
                 };
                 return View(homeProducts);
             }
-            catch 
+            catch
             {
                 return View();
             }
         }
-        /*public IActionResult Index() 
-        {
-            List<Category> categories = new List<Category>()
-            {
-                new Category() { ID = 1, Name = "Телефоны" },
-                new Category() { ID = 2, Name = "Samsung", ParentID = 1 },
-                new Category() { ID = 3, Name = "Телевизоры" },
-                new Category() { ID = 4, Name = "Ноутбуки" },
-                new Category() { ID = 5, Name = "HP", ParentID = 4}
-            };
-
-            return View(categories);
-        }*/
-
-        public IActionResult Products()
-        {
-            Product iPhoneXS = new Product() { ID = 1, Name = "iPhone XS", Price = 27999 };
-            return View(iPhoneXS);
-        }
-
-        public IActionResult Catalog()
-        {
-            List<Category> categories = new List<Category>()
-            {
-                new Category() { ID = 1, Name = "Телефоны" },
-                new Category() { ID = 2, Name = "Samsung", ParentID = 1 },
-                new Category() { ID = 3, Name = "Телевизоры" },
-                new Category() { ID = 4, Name = "Ноутбуки" },
-                new Category() { ID = 5, Name = "HP", ParentID = 4}
-            };
-
-            return View(categories);
-        }
-
+        [Route("About")]
         public IActionResult About()
         {
-            int hour = DateTime.Now.Hour;
-            ViewBag.Greetings = hour > 12 ? "Good nigth": "Good morning";
+            ViewBag.Title = "О нас";
             return View();
         }
-
+        [Route("Contacts")]
         public IActionResult Contacts()
         {
-            int hour = DateTime.Now.Hour;
-            ViewBag.Greetings = hour > 12 ? "Good nigth" : "Good morning";
+            ViewBag.Title = "Контакты";
             return View();
         }
     }

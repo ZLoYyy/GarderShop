@@ -1,0 +1,29 @@
+﻿
+<div class="all-category">
+    <h3 class="cat-heading" id="main-category-head"><i class="fa fa-bars" aria-hidden="true"></i>КАТЕГОРИИ</h3>
+    <ul class="main-category" id="LeftBar">
+        @{
+            foreach (Category category in Model)
+            {
+                if (category.ChildCategories != null && category.ChildCategories.Count() > 0)
+                {
+                    <li>
+                        <a asp-controller="Category" asp-action="ProductsByID" asp-route-id="@category.ID">@category.Name <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        <ul class="sub-category">
+                            @{
+                                foreach (Category childCategory in category.ChildCategories)
+                                {
+                                    <li><a asp-controller="Category" asp-action="ProductsByID" asp-route-id="@childCategory.ID">@childCategory.Name</a></li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li><a asp-controller="Category" asp-action="ProductsByID" asp-route-id="@category.ID">@category.Name</a></li>
+                }
+            }
+        }
+    </ul>
+</div>

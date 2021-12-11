@@ -18,8 +18,8 @@
                     <div class="right-content">
                         <ul class="list-main">
                             <li><i class="ti-location-pin"></i> Store location</li>
-                            <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-                            <li><i class="ti-user"></i> <a href="#">My account</a></li>
+                            <li><i class="ti-alarm-clock"></i> <a asp-controller="Home" asp-action="Index">Daily deal</a></li>
+                            <li class="login-btn modal-btn"><i class="ti-user"></i> <a>Войти</a></li>
                             <li><i class="ti-power-off"></i><a href="login.html#">Login</a></li>
                         </ul>
                     </div>
@@ -35,7 +35,7 @@
                 <div class="col-lg-2 col-md-2 col-12">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img src="images/logo.png" alt="logo"></a>
+                        <a asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="logo"></a>
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->
@@ -56,25 +56,8 @@
                 <div class="col-lg-8 col-md-7 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
-                            <select>
-                                <option selected="selected">All Category</option>
-                                <option>watch</option>
-                                <option>mobile</option>
-
-                                *
-                                *
-                                *
-                                *
-                                *
-                                *
-                                *
-                                *
-                                *
-                                *
-                                <option>kid’s item</option>
-                            </select>
                             <form>
-                                <input name="search" placeholder="Search Products Here....." type="search">
+                                <input name="search" placeholder="Поиск" type="search">
                                 <button class="btnn"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -132,7 +115,8 @@
             <div class="cat-nav-head">
                 <div class="row">
                     <div class="col-lg-3">
-                        <partial name="_LefrBar" />
+                        @await Component.InvokeAsync(nameof(CategoryBar))
+                        <!--<partial name="_LefrBar" />-->
                     </div>
                     <div class="col-lg-9 col-12">
                         <partial name="_MainMenu" />
@@ -143,3 +127,47 @@
     </div>
     <!--/ End Header Inner -->
 </header>
+<!--ModalWindow-->
+<div id="modalWindow">
+    <section class="shop login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-12">
+                    <div class="login-form">
+                        <a class="modal-btn"><i class="ti-user"></i> Close</a>
+                        <h2>Login</h2>
+                        <p>Please register in order to checkout more quickly</p>
+                        <!-- Form -->
+                        <form class="form" method="post" action="#">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Your Email<span>*</span></label>
+                                        <input type="email" name="email" placeholder="" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Your Password<span>*</span></label>
+                                        <input type="password" name="password" placeholder="" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-12 btn-block">
+                                    <div class="form-group login-btn">
+                                        <button class="btn" type="submit" asp-controller="User" asp-action="LogIn">Войти</button>
+                                        <a class="btn" asp-controller="User" asp-action="Registration">Регистрация</a>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Remember me</label>
+                                    </div>
+                                    <a href="#" class="lost-pass">Lost your password?</a>
+                                </div>
+                            </div>
+                        </form>
+                        <!--/ End Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

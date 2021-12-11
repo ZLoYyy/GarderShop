@@ -1,9 +1,9 @@
 ﻿@model GarderShop.Models.Product
     <div class="single-product">
         <div class="product-img">
-            <a href="product-details.html">
-                <img class="default-img"src="@Model.Img" alt="@Model.Name">
-                <img class="hover-img" src="@Model.Img" alt="@Model.Name">
+            <a asp-controller="Product" asp-action="ProductDetail" asp-route-index="@Model.ID">
+                <img class="default-img" src="~/images/Products/@Model.Category.Name/@Model.Img" alt="@Model.Name">
+                <img class="hover-img" src="~/images/Products/@Model.Category.Name/@Model.Img" alt="@Model.Name">
                 <!--<span class="out-of-stock">Hot</span>-->
             </a>
             <div class="button-head">
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="product-content">
-            <h3><a href="product-details.html">@Model.Name</a></h3>
+            <h3><a asp-controller="Product" asp-action="ProductDetail" asp-route-index="@Model.ID">@Model.Name</a></h3>
             <div class="product-price">
                 <!--<span class="old">$60.00</span>-->
                 <span>@Model.Price.ToString("c")</span>

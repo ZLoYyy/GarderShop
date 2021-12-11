@@ -1,0 +1,87 @@
+﻿@model GarderShop.Models.User;
+    <!-- Shop Login -->
+    <section class="shop login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-12">
+                    <div class="login-form">
+                        <h2>Register</h2>
+                        <p>Please register in order to checkout more quickly</p>
+                        <!--FormTagHelpers-->
+                        <form class="form" method="post" asp-action="Registration">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label asp-for="LastName"></label>
+                                        <input asp-for="LastName" />
+                                        <span asp-validation-for="LastName" class="taxt-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label asp-for="FirsName"></label>
+                                        <input asp-for="FirsName" />
+                                        <span asp-validation-for="FirsName" class="taxt-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label asp-for="SecontName"></label>
+                                        <input asp-for="SecontName" />
+                                        <span asp-validation-for="SecontName" class="taxt-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label asp-for="DateOfBorn"></label>
+                                        <input asp-for="DateOfBorn" />
+                                        <span asp-validation-for="DateOfBorn" class="taxt-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label asp-for="Email"></label>
+                                        <input asp-for="Email" />
+                                        <span asp-validation-for="Email" class="taxt-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label asp-for="Phone"></label>
+                                        <input asp-for="Phone" />
+                                        <span asp-validation-for="Phone" class="taxt-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label asp-for="Password"></label>
+                                        <input asp-for="Password" />
+                                        <span asp-validation-for="Password" class="taxt-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label asp-for="ConfirmPassword"></label>
+                                        <input asp-for="ConfirmPassword" />
+                                        <span asp-validation-for="ConfirmPassword" class="taxt-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group login-btn">
+                                        <button class="btn" type="submit">Register</button>
+                                        <a href="https://wpthemesgrid.com/themes/eshop/login.html" class="btn">Login</a>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label class="checkbox-inline" for="2">Sign Up for Newsletter</label>
+                                        <input asp-for="IsAgree" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--End FormTagHelpers-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ End Login -->

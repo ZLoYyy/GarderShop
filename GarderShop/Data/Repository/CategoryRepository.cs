@@ -15,10 +15,27 @@ namespace GarderShop.Data.Repository
         {
             _dBContent = dBContent;
         }
-        public IEnumerable<Category> AllCategories => _dBContent.Categories;
+        public async Task<IEnumerable<Category>> AllCategoriesAsync()
+        {
+            return await _dBContent.Categories.ToListAsync();            
+        }
 
-        public IEnumerable<Category> ParentCategories => _dBContent.Categories.Where(category => category.ParentID == null);
+        public async Task<IEnumerable<Category>> ParentCategoriesAsync()
+        {
+            return await _dBContent.Categories.Where(X => X.ParentID == null).ToListAsync();
+        }
 
-        public Category CategoryByID(int id) => _dBContent.Categories.FirstOrDefault(category => category.ID == id);
+        public async Task<Category> CategoryByIDAsync(int id)
+        {
+            return await _dBContent.Categories.FirstOrDefaultAsync(category => category.ID == id);
+        }
+
+        public async Task<IEnumerable<Category>> ChildCategoriesAsync(int id) => await _dBContent.Categories.Where(category => category.ParentID == id).ToListAsync();
+
+        public async Task SaveCategoryAsync(Category category)
+        {
+            _dBContent.Entry(category).State = EntityState.Added;
+            await _dBContent.SaveChangesAsync();
+        }
     }
 }

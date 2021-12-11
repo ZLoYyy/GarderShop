@@ -26,6 +26,9 @@ namespace GarderShop.Migrations
                     b.Property<int?>("CategoryID")
                         .HasColumnType("int");
 
+                    b.Property<string>("Img")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
@@ -37,6 +40,28 @@ namespace GarderShop.Migrations
                     b.HasIndex("CategoryID");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("GarderShop.Models.CategoryAttribute", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Caption")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CategoryID");
+
+                    b.ToTable("CategoryAttribute");
                 });
 
             modelBuilder.Entity("GarderShop.Models.Product", b =>
@@ -76,10 +101,35 @@ namespace GarderShop.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("GarderShop.Models.ProductAttribute", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Caption")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("ProductAttribute");
+                });
+
             modelBuilder.Entity("GarderShop.Models.ShopCartItem", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
@@ -105,6 +155,15 @@ namespace GarderShop.Migrations
                         .HasForeignKey("CategoryID");
                 });
 
+            modelBuilder.Entity("GarderShop.Models.CategoryAttribute", b =>
+                {
+                    b.HasOne("GarderShop.Models.Category", null)
+                        .WithMany("Attributes")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("GarderShop.Models.Product", b =>
                 {
                     b.HasOne("GarderShop.Models.Category", "Category")
@@ -114,6 +173,15 @@ namespace GarderShop.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("GarderShop.Models.ProductAttribute", b =>
+                {
+                    b.HasOne("GarderShop.Models.Product", null)
+                        .WithMany("Attributes")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GarderShop.Models.ShopCartItem", b =>
@@ -127,9 +195,16 @@ namespace GarderShop.Migrations
 
             modelBuilder.Entity("GarderShop.Models.Category", b =>
                 {
+                    b.Navigation("Attributes");
+
                     b.Navigation("ChildCategories");
 
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("GarderShop.Models.Product", b =>
+                {
+                    b.Navigation("Attributes");
                 });
 #pragma warning restore 612, 618
         }

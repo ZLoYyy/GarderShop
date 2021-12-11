@@ -45,8 +45,17 @@ namespace GarderShop.Controllers
             {
                 _shopCart.AddToCart(item);
             }
-
-            //return RedirectToAction("Index");
         }
+
+        public void UpCount(ShopCartItem item) 
+        {
+            item.Count++;
+        }
+        public void DownCount(ShopCartItem item)
+        {
+            if (item.Count > 1)
+                item.Count--;
+        }
+        
     }
 }
